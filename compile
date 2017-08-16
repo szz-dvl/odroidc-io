@@ -1,1 +1,9 @@
-gcc -std=c99 -o io io.c
+#!/bin/bash
+
+split=3
+
+if [ ! -z $1 ]; then
+	split=$1
+fi
+
+gcc -D CONFIG_VMSPLIT_"$split"G -std=c99 -o io io.c

@@ -362,26 +362,26 @@ void main (int argc, char ** argv) {
   /* If we performed a read / write operation on a bus, translate its reg address and perfom a read operation directly to memory (check). */
   
   if (bus_code != ' ' && opcode < 2) {
-   
-    char lastout [128], phy_char [32];
-    strcpy(lastout, outval);
-    
-    unsigned long int phys_addr = get_bus_addr(bus_code, addr);
-    sprintf(phy_char, "0x%08lX", phys_addr);
-
-    do_read (' ', phy_char, outval);
-     
-    printf("Memory address 0x%08lX: %s", phys_addr, outval);
-    
-    if (is_interesting(outval) && !strcmp(outval, lastout)) {
-      unsigned long int result = (unsigned long int) strtoul(outval, NULL, 0);
-      print_binary(result);
-    }
-    
+	  
+	  char lastout [128], phy_char [32];
+	  strcpy(lastout, outval);
+	  
+	  unsigned long int phys_addr = get_bus_addr(bus_code, addr);
+	  sprintf(phy_char, "0x%08lX", phys_addr);
+	  
+	  do_read (' ', phy_char, outval);
+	  
+	  printf("Memory address 0x%08lX: %s", phys_addr, outval);
+	  
+	  if (is_interesting(outval) && !strcmp(outval, lastout)) {
+		  unsigned long int result = (unsigned long int) strtoul(outval, NULL, 0);
+		  print_binary(result);
+	  }
+	  
   } else if ((bus_code == ' ' && opcode < 2 && is_interesting(outval)) || (opcode > 1 && opcode < 4 && is_interesting(outval))) {
-    
-    unsigned long int result = (unsigned long int) strtoul(outval, NULL, 0);
-    print_binary(result);
+	  
+	  unsigned long int result = (unsigned long int) strtoul(outval, NULL, 0);
+	  print_binary(result);
     
   } 
   
