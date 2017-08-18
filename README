@@ -1,9 +1,0 @@
-This is a very simple code I've been using to write ODROID C1 system busses registers, to compile it one must use, in a runnning installation on the board and with gcc installed:
-
-	gcc -std=c99 -o io io.c
-
-Be aware, this code will only work for the default memory split between user land and kernel, it is, with a kernel compiled with the following option:
-
-	CONFIG_VMSPLIT_3G=y
-
-szz. 
